@@ -24,6 +24,9 @@ h1 {
 p {
     font-size: 20pt;
 }
+p.price{
+    font-size: 28pt;
+}
 .to-list{
     border:1px solid;
     font-size: 20pt;

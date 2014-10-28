@@ -52,7 +52,7 @@ var listings;
 
 function getInfo(i){
     var listing = listings[i];
-    document.getElementById("info").innerHTML = "<div><p class='price'>" + editPrice(listing.price_formatted) + "</p><p class='title'>" + listing.title + "</p><img class='info-img' src='" + listing.img_url + "' /><p>" + listing.bedroom_number + " " + pluralize(listing.bedroom_number,"bed") + ", " + listing.bathroom_number + " " + pluralize(listing.bathroom_number,"bathroom") + " </p><p>" + listing.summary + "</p></div>";
+    document.getElementById("info").innerHTML = "<div><b><p class='price'>" + editPrice(listing.price_formatted) + "</p><p class='title'>" + listing.title + "</p></b><img class='info-img' src='" + listing.img_url + "' /><p>" + listing.bedroom_number + " " + pluralize(listing.bedroom_number,"bed") + ", " + listing.bathroom_number + " " + pluralize(listing.bathroom_number,"bathroom") + " </p><p>" + listing.summary + "</p></div>";
     $('#body2').fadeIn(); 
     $('#body1').fadeOut();
 }
