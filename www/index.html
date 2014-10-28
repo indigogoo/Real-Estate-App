@@ -28,14 +28,34 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Real Estate</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script src="js/jquery.jsonp-2.4.0.min.js"></script>
+        <script>
+         $(document).ready(function(){          
+             $.jsonp({
+                 url: 'http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=leeds',
+                 callbackParameter: 'callback',
+                 success: function(data, status) {
+                     console.log(data);
+                     $('#items').append('<li>The feed loads fine');
+                     $.each(data.response.listings, function(i,item){
+                         var title = item.title;
+                         var thumb_url = item.thumb_url;
+                         var price_formatted = item.price_formatted;
+                         $('#items').append('<div><img src="' + thumb_url + '" class="thumb"><li>'+title + '</li><p>' + price_formatted + '</p></div>');
+                     });
+                 },
+                 error: function(){
+                     $('#items').append('<li>There was an error loading the feed');
+                 }
+             });
+         });
+         </script>
     </head>
     <body>
         <div class="app">
             <h1>Welcome to Real Estate</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+            <ul id="items"></ul>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
