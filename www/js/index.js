@@ -52,9 +52,21 @@ var listings;
 
 function getInfo(i){
     var listing = listings[i];
-    document.getElementById("info").innerHTML = "<div><p class='price'>" + listing.price_formatted + "</p><p class='title'>" + listing.title + "</p><img class='info-img' src='" + listing.img_url + "' /><p>" + listing.bedroom_number +" beds, " + listing.bathroom_number + " bathrooms</p><p>" + listing.summary + "</p></div>";
+    document.getElementById("info").innerHTML = "<div><p class='price'>" + editPrice(listing.price_formatted) + "</p><p class='title'>" + listing.title + "</p><img class='info-img' src='" + listing.img_url + "' /><p>" + listing.bedroom_number + " " + pluralize(listing.bedroom_number,"bed") + ", " + listing.bathroom_number + " " + pluralize(listing.bathroom_number,"bathroom") + " </p><p>" + listing.summary + "</p></div>";
     $('#body2').fadeIn(); 
     $('#body1').fadeOut();
+}
+
+function pluralize(count, string){
+    if (count != 1)
+        string = string + "s";
+    return string;
+}
+
+function editPrice(price) {
+    var re = /(\d+,\d+,?\d*)\sGBP/;
+    var newPrice = price.replace(re, "&#163; $1");
+    return newPrice;
 }
 
 $(document).ready(function(){          
@@ -67,7 +79,7 @@ $(document).ready(function(){
              var title = item.title;
              var thumbUrl = item.thumb_url;
              var priceFormatted = item.price_formatted;
-             $('#items').append('<div class="outer" onclick="getInfo(' + i + ')"><div class="item-image"><img src="' + thumbUrl + '" class="thumb"></div><div class="item-desc"><p>' + priceFormatted + '</p><p>' + title + '</p></div></div>');
+             $('#items').append('<div class="outer" onclick="getInfo(' + i + ')"><div class="item-image"><img src="' + thumbUrl + '" class="thumb"></div><div class="item-desc"><p>' + editPrice(priceFormatted) + '</p><p>' + title + '</p></div></div>');
          });
      },
      error: function(){
