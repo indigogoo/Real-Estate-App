@@ -49,3 +49,37 @@ var app = {
 };
 
 
+
+
+
+$(document).ready(function(){          
+ $.jsonp({
+     url: 'http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=leeds',
+     callbackParameter: 'callback',
+     success: function(data, status) {
+         console.log(data);
+         $('#items').append('<p>The feed loads fine');
+         $.each(data.response.listings, function(i,item){
+             var title = item.title;
+             var thumb_url = item.thumb_url;
+             var price_formatted = item.price_formatted;
+             $('#items').append('<div class="outer"><div class="item-image"><img src="' + thumb_url + '" class="thumb"></div><div class="item-desc"><p>' + title + '</p><p>' + price_formatted + '</p></div></div>');
+         });
+     },
+     error: function(){
+         $('#items').append('<p>There was an error loading the feed');
+     }
+ });
+
+ $(".to-item-info").click(function(){
+    $('#body2').fadeIn(); 
+    $('#body1').fadeOut();
+ });
+
+ $(".to-list").click(function(){
+    $('#body1').fadeIn(); 
+    $('#body2').fadeOut();
+ });
+});
+
+
