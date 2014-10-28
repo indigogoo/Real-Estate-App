@@ -48,22 +48,26 @@ var app = {
     }
 };
 
+var listings;
 
-
-
+function getInfo(i){
+    var listing = listings[i];
+    document.getElementById("info").innerHTML = "<div><p class='price'>" + listing.price_formatted + "</p><p class='title'>" + listing.title + "</p><img class='title' src='" + listing.img_url + "' /><p>" + listing.bedroom_number +" beds, " + listing.bathroom_number + " bathrooms</p><p>" + listing.summary + "</p></div>";
+    $('#body2').fadeIn(); 
+    $('#body1').fadeOut();
+}
 
 $(document).ready(function(){          
  $.jsonp({
      url: 'http://api.nestoria.co.uk/api?country=uk&pretty=1&action=search_listings&encoding=json&listing_type=buy&page=1&place_name=leeds',
      callbackParameter: 'callback',
      success: function(data, status) {
-         console.log(data);
-         $('#items').append('<p>The feed loads fine');
-         $.each(data.response.listings, function(i,item){
+         listings = data.response.listings;
+         $.each(listings, function(i,item){
              var title = item.title;
-             var thumb_url = item.thumb_url;
-             var price_formatted = item.price_formatted;
-             $('#items').append('<div class="outer"><div class="item-image"><img src="' + thumb_url + '" class="thumb"></div><div class="item-desc"><p>' + title + '</p><p>' + price_formatted + '</p></div></div>');
+             var thumbUrl = item.thumb_url;
+             var priceFormatted = item.price_formatted;
+             $('#items').append('<div class="outer" onclick="getInfo(' + i + ')"><div class="item-image"><img src="' + thumbUrl + '" class="thumb"></div><div class="item-desc"><p>' + priceFormatted + '</p><p>' + title + '</p></div></div>');
          });
      },
      error: function(){
@@ -71,10 +75,6 @@ $(document).ready(function(){
      }
  });
 
- $(".to-item-info").click(function(){
-    $('#body2').fadeIn(); 
-    $('#body1').fadeOut();
- });
 
  $(".to-list").click(function(){
     $('#body1').fadeIn(); 
