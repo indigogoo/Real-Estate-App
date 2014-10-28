@@ -52,7 +52,7 @@ var listings;
 
 function getInfo(i){
     var listing = listings[i];
-    document.getElementById("info").innerHTML = "<div><p class='price'>" + listing.price_formatted + "</p><p class='title'>" + listing.title + "</p><img class='title' src='" + listing.img_url + "' /><p>" + listing.bedroom_number +" beds, " + listing.bathroom_number + " bathrooms</p><p>" + listing.summary + "</p></div>";
+    document.getElementById("info").innerHTML = "<div><p class='price'>" + listing.price_formatted + "</p><p class='title'>" + listing.title + "</p><img class='info-img' src='" + listing.img_url + "' /><p>" + listing.bedroom_number +" beds, " + listing.bathroom_number + " bathrooms</p><p>" + listing.summary + "</p></div>";
     $('#body2').fadeIn(); 
     $('#body1').fadeOut();
 }
