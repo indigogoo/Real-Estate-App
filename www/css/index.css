@@ -14,7 +14,7 @@
 }
 
 h1 {
-    font-size:24px;
+    font-size:50px;
     font-weight:normal;
     margin:0px;
     overflow:visible;
@@ -24,9 +24,13 @@ h1 {
 p {
     font-size: 20pt;
 }
+.to-list{
+    border:1px solid;
+    font-size: 20pt;
+}
 .info-img {
     width:100%;
-    padding:5%;
+    padding:1%;
 }
 .item-image img {
     height:140px;
@@ -41,6 +45,10 @@ p {
     height: 170px;
     border: 1px solid;
     margin:5px;
+}
+
+.content {
+    width:99%;
 }
 
 .event {
@@ -86,7 +94,6 @@ p {
   opacity: 0.4;
   margin-bottom: 6px;
 }
-54
 .desc {
   line-height: 1.2;
   font-size: 13px;
