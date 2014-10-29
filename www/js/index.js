@@ -79,7 +79,7 @@ $(document).ready(function(){
              var title = item.title;
              var thumbUrl = item.thumb_url;
              var priceFormatted = item.price_formatted;
-             $('#items').append('<div class="outer" onclick="getInfo(' + i + ')"><div class="item-image"><img src="' + thumbUrl + '" class="thumb"></div><div class="item-desc"><p>' + editPrice(priceFormatted) + '</p><p>' + title + '</p></div></div>');
+             $('#items').append('<div class="outer" onclick="getInfo(' + i + ')"><div class="item-image"><img src="' + thumbUrl + '" class="thumb"></div><div class="item-desc"><p class="list-price">' + editPrice(priceFormatted) + '</p><p>' + title + '</p></div></div>');
          });
      },
      error: function(){

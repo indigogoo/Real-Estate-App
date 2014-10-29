@@ -21,10 +21,13 @@ h1 {
     text-align:center;
 }
 p {
-    font-size: 20pt;
+    font-size: 18pt;
 }
 p.price{
     font-size: 28pt;
+}
+.list-price{
+    font-size: 21pt;
 }
 .to-list{
     border:1px solid;
